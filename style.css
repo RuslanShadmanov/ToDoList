@@ -16,3 +16,11 @@ body{
 .success{
     color: green;
 }
+
+button {
+    margin: 10px;
+}
+
+.completed {
+    text-decoration: line-through;
+}
