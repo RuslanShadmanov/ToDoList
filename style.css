@@ -1,0 +1,18 @@
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info{
+    height: 20px;
+}
+
+.danger{
+    color:red;
+}
+
+.success{
+    color: green;
+}
