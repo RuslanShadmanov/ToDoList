@@ -5,6 +5,9 @@ const resetBtn = document.querySelector("button[type='reset']");
 const ul = document.querySelector("ul");
 const form = document.querySelector("form")
 const p = document.querySelector(".info")
+const showCompletedBtn = document.querySelector(".comleted-button")
+const showPendingBtn = document.querySelector(".pending")
+const showAllBtn = document.querySelector(".all")
 let tasks = [];
 
 const showMsg = (msgText,status) => {
@@ -77,6 +80,34 @@ resetBtn.addEventListener("click",()=>{
     input.valuev = "";
     tasks.length = 0;
 })
+showCompletedBtn.addEventListener("click", () => {
+    const completed =tasks.filter((task)=>task.isDone===true);
+    ul.innerHTML = "";
+   completed.forEach((task)=>{
+    const li = document.createElement('li');
+    li.innerHTML = task.name;
+    ul.appendChild(li);
+   });
+}
+)
+showPendingBtn.addEventListener("click", () => {
+    const pending =tasks.filter((task)=>task.isDone===false);
+    ul.innerHTML = "";
+   pending.forEach((task)=>{
+    const li = document.createElement('li');
+    li.innerHTML = task.name;
+    ul.appendChild(li);
+   });
+})
+showAllBtn.addEventListener("click", () => {
+    ul.innerHTML = "";
+   tasks.forEach((task)=>{
+    const li = document.createElement('li');
+    li.innerHTML = task.name;
+    ul.appendChild(li);
+   });
+})
+
 
 // newTask.map(()=>{
 //     newTask.isDone===true
