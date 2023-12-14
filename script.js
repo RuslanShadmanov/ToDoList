@@ -44,10 +44,61 @@ const newTask = {
 };
 
     tasks.push(newTask);
+    renderTasks(tasks)
      
-    const li = document.createElement("li")
-    li.innerText = newTask.name;
-    li.setAttribute("id",newTask.id);
+    
+    showMsg( "Item added succesfully","success")
+    
+    input.value = "";
+})
+
+resetBtn.addEventListener("click",()=>{
+    ul.innerHTML = "";
+    input.valuev = "";
+    tasks.length = 0;
+})
+showCompletedBtn.addEventListener("click", () => {
+    const completed =tasks.filter((task)=>task.isDone===true);
+    renderTasks(completed);
+//    completed.forEach((task)=>{
+//     const li = document.createElement('li');
+//     li.innerHTML = task.name;
+//     ul.appendChild(li);
+//    });
+}
+)
+showPendingBtn.addEventListener("click", () => {
+    const pending =tasks.filter((task)=>task.isDone===false);
+    renderTasks(pending)
+//    pending.forEach((task)=>{
+//     const li = document.createElement('li');
+//     li.innerHTML = task.name;
+//     ul.appendChild(li);
+//    });
+})
+showAllBtn.addEventListener("click", () => {
+    // ul.innerHTML = "";
+    renderTasks(tasks)
+//    tasks.forEach((task)=>{
+//     const li = document.createElement('li');
+//     li.innerHTML = task.name;
+//     ul.appendChild(li);
+//    });
+})
+
+const renderTasks = (array) => {
+    ul.innerHTML = "";
+    array.forEach((item)=>{
+        const li = document.createElement("li")
+        if (item.isDone===true){
+            li.classList.add("completed")
+
+        } else {
+            li.classList.remove("completed")
+        }
+        console.log(li)
+    li.innerText = item.name;
+    li.setAttribute("id",item.id);
     const deleteBtn = document.createElement("button")
     deleteBtn.innerText = "delete"
     deleteBtn.addEventListener("click",(e)=>{
@@ -70,44 +121,9 @@ const newTask = {
     li.appendChild(checkbox);
     li.appendChild(deleteBtn);
     ul.appendChild(li);
-    showMsg( "Item added succesfully","success")
-    
-    input.value = "";
-})
 
-resetBtn.addEventListener("click",()=>{
-    ul.innerHTML = "";
-    input.valuev = "";
-    tasks.length = 0;
 })
-showCompletedBtn.addEventListener("click", () => {
-    const completed =tasks.filter((task)=>task.isDone===true);
-    ul.innerHTML = "";
-   completed.forEach((task)=>{
-    const li = document.createElement('li');
-    li.innerHTML = task.name;
-    ul.appendChild(li);
-   });
 }
-)
-showPendingBtn.addEventListener("click", () => {
-    const pending =tasks.filter((task)=>task.isDone===false);
-    ul.innerHTML = "";
-   pending.forEach((task)=>{
-    const li = document.createElement('li');
-    li.innerHTML = task.name;
-    ul.appendChild(li);
-   });
-})
-showAllBtn.addEventListener("click", () => {
-    ul.innerHTML = "";
-   tasks.forEach((task)=>{
-    const li = document.createElement('li');
-    li.innerHTML = task.name;
-    ul.appendChild(li);
-   });
-})
-
 
 // newTask.map(()=>{
 //     newTask.isDone===true
